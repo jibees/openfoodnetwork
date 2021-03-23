@@ -1,4 +1,4 @@
-angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter) ->
+angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter, $location) ->
   $scope.RequestMonitor = RequestMonitor
   $scope.pagination = Orders.pagination
   $scope.orders = Orders.all
@@ -22,6 +22,11 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
     }
     $scope.fetchResults()
 
+  $scope.writeParamsToUrl = (params) ->
+    for k,v of params
+      $location.search(k, v)
+    
+
   $scope.fetchResults = (page=1) ->
     startDateWithTime = $scope.appendStringIfNotEmpty($scope['q']['completed_at_gteq'], ' 00:00:00')
     endDateWithTime = $scope.appendStringIfNotEmpty($scope['q']['completed_at_lteq'], ' 23:59:59')
@@ -44,6 +49,7 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
       per_page: $scope.per_page,
       page: page
     }
+    $scope.writeParamsToUrl(params)
     RequestMonitor.load(Orders.index(params).$promise)
 
   $scope.appendStringIfNotEmpty = (baseString, stringToAppend) ->
