@@ -79,6 +79,7 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
 
   $scope.appendStringIfNotEmpty = (baseString, stringToAppend) ->
     return baseString unless baseString
+    return baseString if baseString.endsWith(stringToAppend)
 
     baseString + stringToAppend
 
