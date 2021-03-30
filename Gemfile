@@ -113,6 +113,8 @@ gem 'ofn-qz', github: 'openfoodfoundation/ofn-qz', branch: 'ofn-rails-4'
 
 gem 'good_migrations'
 
+gem "view_component", require: "view_component/engine"
+
 group :production, :staging do
   gem 'ddtrace'
   gem 'unicorn-worker-killer'
