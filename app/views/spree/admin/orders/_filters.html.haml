@@ -15,17 +15,17 @@
             {include_blank: true, class: 'select2', 'ng-model' => 'q.state_eq'})
     .four.columns
       .field
-        = label_tag nil, t(:order_number)
+        = label_tag "q_number_cont", t(:order_number)
         = text_field_tag "q[number_cont]", nil, "ng-model" => "q.number_cont", "ng-keypress" => "$event.keyCode === 13 && fetchResults()"
       .field
-        = label_tag nil, t(:email)
+        = label_tag "q_email_cont", t(:email)
         = email_field_tag "q[email_cont", nil, "ng-model" => "q.email_cont", "ng-keypress" => "$event.keyCode === 13 && fetchResults()"
     .four.columns
       .field
-        = label_tag nil, t(:first_name_begins_with)
+        = label_tag "q_bill_address_firstname_start", t(:first_name_begins_with)
         = text_field_tag "q[bill_address_firstname_start]", nil, size: 25, "ng-model" => "q.bill_address_firstname_start", "ng-keypress" => "$event.keyCode === 13 && fetchResults()"
       .field
-        = label_tag nil, t(:last_name_begins_with)
+        = label_tag "q_bill_address_lastname_start", t(:last_name_begins_with)
         = text_field_tag "q[bill_address_lastname_start]", nil, size: 25, "ng-model" => "q.bill_address_lastname_start", "ng-keypress" => "$event.keyCode === 13 && fetchResults()"
     .omega.four.columns
       .field.checkbox
