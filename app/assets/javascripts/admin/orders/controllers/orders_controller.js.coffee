@@ -55,7 +55,10 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
 
   $scope.writeParamsToUrl = (params) ->
     for k,v of params
-      $location.search(k, v)
+      if k == "q[completed_at_not_null]" && v == null
+        $location.search(k, false)
+      else
+        $location.search(k, v)
     localStorageService.add(filtersInUrlKey, $location.url());
 
   $scope.fetchResults = (page=1) ->
