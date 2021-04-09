@@ -114,7 +114,6 @@ gem 'ofn-qz', github: 'openfoodfoundation/ofn-qz', branch: 'ofn-rails-4'
 gem 'good_migrations'
 
 gem "view_component", require: "view_component/engine"
-gem "view_component_storybook"
 
 group :production, :staging do
   gem 'ddtrace'
@@ -162,6 +161,8 @@ group :development do
   gem 'rubocop-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  gem "view_component_storybook"
 
   # 1.0.9 fixed openssl issues on macOS https://github.com/eventmachine/eventmachine/issues/602
   # While we don't require this gem directly, no dependents forced the upgrade to a version
