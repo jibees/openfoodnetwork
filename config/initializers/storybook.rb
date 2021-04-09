@@ -9,6 +9,6 @@ if Rails.env.development?
     end
   end
 
-  ViewComponent::Storybook::StoriesController.before_filter(PermissiveCORSHeaders)
+  ViewComponent::Storybook::StoriesController.before_action(PermissiveCORSHeaders)
 end
 
