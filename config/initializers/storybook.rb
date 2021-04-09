@@ -1,6 +1,5 @@
 module PermissiveCORSHeaders
-
-  def self.before((response))
+  def self.before(response)
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "GET"
   end
