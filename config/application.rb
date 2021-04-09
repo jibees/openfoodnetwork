@@ -6,8 +6,6 @@ require_relative "../lib/open_food_network/i18n_config"
 require_relative '../lib/spree/core/environment'
 require_relative '../lib/spree/core/mail_interceptor'
 
-require "view_component/storybook/engine"
-
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -204,7 +202,5 @@ module Openfoodnetwork
     config.active_job.queue_adapter = :delayed_job
 
     config.generators.template_engine = :haml
-
-    config.view_component_storybook.stories_path = Rails.root.join("spec/components/stories")
   end
 end
