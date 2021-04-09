@@ -65,6 +65,6 @@ Openfoodnetwork::Application.configure do
 
   config.log_level = :debug
 
-  # Configure assets served by rails application
+  # Configure asset host for use with StoryBook
   config.action_controller.asset_host =  'http://localhost:3000'
 end
