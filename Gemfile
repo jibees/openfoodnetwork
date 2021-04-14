@@ -117,6 +117,8 @@ gem 'flipper'
 gem 'flipper-active_record'
 gem 'flipper-ui'
 
+gem "activesupport"
+
 group :production, :staging do
   gem 'ddtrace'
   gem 'unicorn-worker-killer'

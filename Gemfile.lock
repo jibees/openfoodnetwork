@@ -613,6 +613,7 @@ DEPENDENCIES
   activerecord-import
   activerecord-postgresql-adapter
   activerecord-session_store
+  activesupport
   acts-as-taggable-on (~> 7.0)
   acts_as_list (= 1.0.3)
   andand
