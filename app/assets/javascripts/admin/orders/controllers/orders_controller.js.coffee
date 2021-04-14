@@ -1,4 +1,4 @@
-angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter, $location) ->
+angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter, $location, localStorageService) ->
   $scope.RequestMonitor = RequestMonitor
   $scope.pagination = Orders.pagination
   $scope.orders = Orders.all
@@ -14,6 +14,12 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
   $scope.select_all = false
   $scope.poll = 0
   $scope.rowStatus = {}
+
+  localStorageService.setStorageType("sessionStorage")
+  filtersInUrlKey = 'ordersFilters'
+
+  $scope.getStoredFilters = ->
+    localStorageService.get(filtersInUrlKey) || ""
 
   $scope.initialise = ->
     params = $location.search()
@@ -50,7 +56,7 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
   $scope.writeParamsToUrl = (params) ->
     for k,v of params
       $location.search(k, v)
-    
+    localStorageService.add(filtersInUrlKey, $location.url());
 
   $scope.fetchResults = (page=1) ->
     startDateWithTime = $scope.appendStringIfNotEmpty($scope['q']['completed_at_gteq'], ' 00:00:00')
