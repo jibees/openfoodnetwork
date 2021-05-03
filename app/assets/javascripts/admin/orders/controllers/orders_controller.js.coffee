@@ -1,4 +1,4 @@
-angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter, $location, localStorageService) ->
+angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, RequestMonitor, Orders, SortOptions, $window, $filter, $location, QueryPersistence) ->
   $scope.RequestMonitor = RequestMonitor
   $scope.pagination = Orders.pagination
   $scope.orders = Orders.all
@@ -15,38 +15,17 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
   $scope.poll = 0
   $scope.rowStatus = {}
 
-  localStorageService.setStorageType("sessionStorage")
-  filtersInUrlKey = 'ordersFilters'
-  storableFilters = ["q", "sorting", "shipping_method_id", "page", "per_page"]
+  QueryPersistence.storageKey = 'ordersFilters'
+  QueryPersistence.storableFilters = ["q", "sorting", "shipping_method_id", "page", "per_page"]
 
   $scope.initialise = ->
-    unless $scope.restoreFilters()
+    unless QueryPersistence.restoreFilters($scope)
       $scope.per_page = 15
       $scope.q = {
         completed_at_not_null: true
       }
 
     $scope.fetchResults()
-
-  $scope.getStoredFilters = ->
-    localStorageService.get(filtersInUrlKey) || {}
-
-  $scope.setStoredFilters = ->
-    filters = {}
-    for key in storableFilters
-      filters[key] = $scope[key]
-    localStorageService.set(filtersInUrlKey, filters)
-
-  $scope.restoreFilters = ->
-    storedFilters = $scope.getStoredFilters()
-
-    if storedFilters
-      for k,v of storedFilters
-        $scope[k] = v
-
-      return true
-
-    false
 
   $scope.fetchResults = (page=1) ->
     startDateWithTime = $scope.appendStringIfNotEmpty($scope['q']['completed_at_gteq'], ' 00:00:00')
@@ -70,7 +49,7 @@ angular.module("admin.orders").controller "ordersCtrl", ($scope, $timeout, Reque
       per_page: $scope.per_page,
       page: page
     }
-    $scope.setStoredFilters()
+    QueryPersistence.setStoredFilters($scope)
     RequestMonitor.load(Orders.index(params).$promise)
 
   $scope.appendStringIfNotEmpty = (baseString, stringToAppend) ->
