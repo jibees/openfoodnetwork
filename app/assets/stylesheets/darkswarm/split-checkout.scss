@@ -1,0 +1,29 @@
+.checkout-tab {
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  span {
+    font-size: 1.3rem;
+    @include headingFont;
+  }
+
+  &:not(.selected) {
+    background-color: white;
+    border-bottom: 5px solid $min-accessible-grey;
+
+    span {
+      color: $min-accessible-grey;
+    }
+  }
+
+  &.selected {
+    background-color: $ofn-brand;
+
+    span {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+}

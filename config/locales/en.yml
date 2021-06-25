@@ -1612,6 +1612,11 @@ en:
   checkout_back_to_cart: "Back to Cart"
   cost_currency: "Cost Currency"
 
+  split_checkout:
+    your_details: 1 - Your details
+    payment_method: 2 - Payment method
+    order_summary: 3 - Order summary
+
   order_paid: PAID
   order_not_paid: NOT PAID
   order_total: Total order
