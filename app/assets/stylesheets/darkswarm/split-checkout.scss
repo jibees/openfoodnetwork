@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
 
   span {
     font-size: 1.3rem;
     @include headingFont;
   }
 
-  &:not(.selected) {
+  &:not(.selected):not(.success) {
     background-color: white;
     border-bottom: 5px solid $min-accessible-grey;
 
@@ -24,6 +25,25 @@
     span {
       color: white;
       text-decoration: underline;
+    }
+  }
+
+  &.next {
+    cursor: not-allowed;
+  }
+
+  &.success {
+    border-bottom: 5px solid $clr-turquoise-bright;
+    span:after {
+      background-color: $clr-turquoise-bright;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      content: "✓";
+      color: white;
+      border-radius: 50%;
+      margin-left: 10px;
+      display: inline-block;
     }
   }
 }
