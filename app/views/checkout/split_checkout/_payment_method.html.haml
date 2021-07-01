@@ -1,0 +1,32 @@
+%ng-form{"ng-controller" => "PaymentCtrl", name: "payment"}
+  %div.checkout-substep
+    %div.checkout-title
+      = t("split_checkout.step2.payment_method.title")
+
+    - available_payment_methods.each do |method|
+      %div.checkout-input
+        %input{type: :radio,
+          required: true,
+          id: "order.payment_method_id__" + method.id.to_s,
+          name: "order.payment_method_id",
+          "ng-model": "order.payment_method_id"}
+        
+        %label{for: "order.payment_method_id__" + method.id.to_s}
+          = method.name
+          = "(#{payment_method_price(method, @order)})"
+   
+    %div
+      .panel{"ng-show" => "Checkout.paymentMethod().description"}
+        %span {{ Checkout.paymentMethod().description }}
+
+  %div.checkout-substep
+    = t("split_checkout.step2.explaination")
+
+  %div.checkout-submit
+    %button.button.primary{ type: :submit, ng: { disabled: "terms_and_conditions_accepted == false || platform_tos_accepted == false" } }
+      = t("split_checkout.step2.submit")
+    %a.button.cancel{href: main_app.cart_path}
+      = t("split_checkout.step2.cancel")
+
+
+
