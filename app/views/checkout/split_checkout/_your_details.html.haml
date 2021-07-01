@@ -83,8 +83,8 @@
             = t :checkout_default_ship_address
     
       .div.checkout-input{"ng-show" => "Checkout.shippingMethod().description"}
-        #distributor_address.panel
-          %span{}{{ Checkout.shippingMethod().description }}
+        .panel
+          %span{{ Checkout.shippingMethod().description }}
           %br/
           %br/
           - if @order.order_cycle.pickup_time_for(@order.distributor)

@@ -84,6 +84,10 @@
       &.error {
         border-color: $red-700;
       }
+      &[type="radio"] {
+        position: relative;
+        top: 2px;
+      }
     }
     small.error {
       background-color: rgba(193, 18, 43, 0.1);
@@ -94,7 +98,7 @@
     }
   }
 
-  .checkout-input #distributor_address.panel {
+  .checkout-input .panel {
     font-size: 0.875rem;
     padding: 1rem;
     span {
