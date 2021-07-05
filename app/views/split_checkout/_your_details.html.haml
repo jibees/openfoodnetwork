@@ -1,5 +1,6 @@
 %ng-form{"ng-controller" => "DetailsCtrl", name: "details"}
   %div.checkout-substep
+    %input{type: :hidden, id: "advance_to_state", "name": "advance_to_state", "value": "delivery"}
     -# YOUR DETAILS
     %div.checkout-title
       = t("split_checkout.step1.your_details.title")
