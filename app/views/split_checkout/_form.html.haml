@@ -4,11 +4,12 @@
   = inject_saved_credit_cards
 
 = form_for current_order,
-  url: order_path(current_order),
-  html: {name: "checkout",
+  url: update_checkout_path,
+  html: {name: "split_checkout",
     id: "checkout_form",
     novalidate: true,
-    "ng-submit" => "purchase($event, checkout)"} do |f|
+    method: "PUT",
+    "ng-submit" => "purchase($event, split_checkout)"} do |f|
 
   %div.checkout-step.medium-6
     - if true ## test step
