@@ -59,6 +59,7 @@
 
       &.error {
         font-weight: $font-weight-bold;
+        color: $red-700;
       }
     }
 
@@ -71,7 +72,7 @@
       }
     }
 
-    .error {
+    small.error {
       background-color: rgba(193, 18, 43, 0.1);
       color: $red-700;
       font-style: normal;
